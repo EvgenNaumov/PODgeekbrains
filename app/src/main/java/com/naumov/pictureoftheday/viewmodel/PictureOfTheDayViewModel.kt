@@ -7,9 +7,15 @@ import androidx.viewbinding.BuildConfig
 import com.naumov.pictureoftheday.BuildConfig.NASA_API_KEY
 import com.naumov.pictureoftheday.repository.PODRetrofitImpl
 import com.naumov.pictureoftheday.repository.PODServerResponseData
+import com.naumov.pictureoftheday.utils.DBY
+import com.naumov.pictureoftheday.utils.TODAY
+import com.naumov.pictureoftheday.utils.YESTERDAY
+import com.naumov.pictureoftheday.view.PictureOfTheDayFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 
 class PictureOfTheDayViewModel (
     private val liveDataForViewToObserve: MutableLiveData<PictureOfTheDayData> = MutableLiveData(),
@@ -17,11 +23,10 @@ class PictureOfTheDayViewModel (
 ) : ViewModel() {
 
     fun getData(): LiveData<PictureOfTheDayData> {
-        sendServerRequest()
         return liveDataForViewToObserve
     }
 
-    private fun sendServerRequest() {
+    private fun sendServerRequest(checkDay:Int) {
         liveDataForViewToObserve.value = PictureOfTheDayData.Loading(null)
 
         val apiKey : String = NASA_API_KEY;
@@ -29,7 +34,29 @@ class PictureOfTheDayViewModel (
         if (apiKey.isBlank()) {
             liveDataForViewToObserve.value = PictureOfTheDayData.Error(Throwable("You need API key"))
         } else {
-            retrofitImpl.getRetrofitImpl().getPictureOfTheDay(apiKey).enqueue(object :
+
+            val calendar = Calendar.getInstance()
+            val dateKey = when (checkDay){
+                TODAY->{
+                    val today = calendar.time
+                     SimpleDateFormat("yyyy-MM-dd").format(today)
+                }
+                YESTERDAY->{
+
+                    val yesterday = calendar.apply { add(Calendar.DAY_OF_MONTH, -1) }.time
+                    SimpleDateFormat("yyyy-MM-dd").format(yesterday)
+
+                }
+                DBY->{
+                    val afterYesterday = calendar.apply { add(Calendar.DAY_OF_MONTH, -2) }.time
+                    SimpleDateFormat("yyyy-MM-dd").format(afterYesterday)
+                }
+                else -> {
+                    val today = calendar.time
+                    SimpleDateFormat("yyyy-MM-dd").format(today)
+                }
+            }
+            retrofitImpl.getRetrofitImpl().getPictureOfTheDay(apiKey,dateKey).enqueue(object :
                 Callback<PODServerResponseData> {
                 override fun onResponse(
                     call: Call<PODServerResponseData>,
@@ -54,6 +81,19 @@ class PictureOfTheDayViewModel (
                     liveDataForViewToObserve.value = PictureOfTheDayData.Error(t)
                 }
             })
+
         }
+    }
+
+    fun sendRequestToday() {
+        sendServerRequest(TODAY)
+    }
+
+    fun sendRequestYT() {
+        sendServerRequest(YESTERDAY)
+    }
+
+    fun sendRequestTDBY() {
+        sendServerRequest(DBY)
     }
 }

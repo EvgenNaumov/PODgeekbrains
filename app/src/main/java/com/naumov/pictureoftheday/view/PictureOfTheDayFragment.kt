@@ -3,6 +3,7 @@ package com.naumov.pictureoftheday.view
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -14,11 +15,14 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.naumov.pictureoftheday.R
 import com.naumov.pictureoftheday.databinding.FragmentPictureOfTheDayBinding
 import com.naumov.pictureoftheday.ui.MainActivity
+import com.naumov.pictureoftheday.utils.DEBUG
+import com.naumov.pictureoftheday.utils.TAG
+import com.naumov.pictureoftheday.utils.TODAY
 import com.naumov.pictureoftheday.utils.toast
 import com.naumov.pictureoftheday.viewmodel.PictureOfTheDayData
 import com.naumov.pictureoftheday.viewmodel.PictureOfTheDayViewModel
 
-class PictureOfTheDayFragment: Fragment() {
+class PictureOfTheDayFragment : Fragment() {
 
     private var _binding: FragmentPictureOfTheDayBinding? = null
     private val binding get() = _binding!!
@@ -35,23 +39,50 @@ class PictureOfTheDayFragment: Fragment() {
     ): View {
         viewModel.getData()
             .observe(viewLifecycleOwner) { renderData(it) }
+        viewModel.sendRequestToday()
 
         _binding = FragmentPictureOfTheDayBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
-
+       // setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
+        setBottomSheetBehavior()
         binding.inputLayout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
+                data =
+                    Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
             })
         }
 
+        if (savedInstanceState == null) {
+            binding.chipGroup.check(R.id.chip_td)
+        }
+
         setBottomAppBar(view)
+        initChip()
+    }
+
+    private fun initChip() {
+
+        binding.chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
+            for (ch:Int in checkedIds){
+               when (ch) {
+                   binding.chipDby.id->{
+                       viewModel.sendRequestTDBY()
+                   }
+                   binding.chipTd.id->{
+                       viewModel.sendRequestToday()
+                   }
+                   binding.chipEst.id->{
+                       viewModel.sendRequestYT()
+                   }
+               }
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -71,8 +102,8 @@ class PictureOfTheDayFragment: Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.app_bar_fav -> requireView().toast("Favourite",requireContext())
-            R.id.app_bar_settings -> requireView().toast("Settings",requireContext())
+            R.id.app_bar_fav -> requireView().toast("Favourite", requireContext())
+            R.id.app_bar_settings -> requireView().toast("Settings", requireContext())
 //                activity?.supportFragmentManager?.beginTransaction()?.add(R.id.container, ChipsFragment.newInstance())
 //                ?.addToBackStack(null)
 //                ?.commit()
@@ -93,7 +124,7 @@ class PictureOfTheDayFragment: Fragment() {
                 val url = serverResponseData.url
 
                 if (url.isNullOrEmpty()) {
-                    requireView().toast("Link is empty",requireContext())
+                    requireView().toast("Link is empty", requireContext())
                 } else {
                     binding.imageView.load(url) {
                         lifecycle(this@PictureOfTheDayFragment)
@@ -101,19 +132,22 @@ class PictureOfTheDayFragment: Fragment() {
                         placeholder(R.drawable.ic_no_photo_vector)
                         crossfade(true)
                     }
+
+                    binding.includeBottomSheet.bottomSheetDescriptionHeader.text = data.serverResponseData.title
+                    binding.includeBottomSheet.bottomSheetDescription.text = data.serverResponseData.explanation
                 }
             }
             is PictureOfTheDayData.Loading -> {
                 //TODO
             }
             is PictureOfTheDayData.Error -> {
-                requireView().toast(data.error.message,requireContext())
+                requireView().toast(data.error.message, requireContext())
             }
         }
     }
 
-    private fun setBottomSheetBehavior(bottomSheet : ConstraintLayout) {
-        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
+    private fun setBottomSheetBehavior() {
+        bottomSheetBehavior = BottomSheetBehavior.from(binding.includeBottomSheet.bottomSheetContainer)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
@@ -127,14 +161,24 @@ class PictureOfTheDayFragment: Fragment() {
                 isMain = false
                 binding.bottomAppBar.navigationIcon = null
                 binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
-                binding.fab.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_back_fab))
+                binding.fab.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        context,
+                        R.drawable.ic_back_fab
+                    )
+                )
                 binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
             } else {
                 isMain = true
                 binding.bottomAppBar.navigationIcon =
                     ContextCompat.getDrawable(context, R.drawable.ic_hamburger_menu_bottom_bar)
                 binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-                binding.fab.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_plus_fab))
+                binding.fab.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        context,
+                        R.drawable.ic_plus_fab
+                    )
+                )
                 binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar)
             }
         }

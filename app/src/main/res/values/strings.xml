@@ -3,7 +3,10 @@
     <string name="photo_of_the_day_stub">Photo of the day</string>
     <string name="search_wiki">Найти в Википедии</string>
     <string name="wiki_helper_text">Поищите термин в википедии</string>
-    <string name="favourite">favourite</string>
-    <string name="settings">settings</string>
-    <string name="search">Search</string>
+    <string name="favourite">Основные</string>
+    <string name="settings">Настройки</string>
+    <string name="search">Поиск</string>
+    <string name="today">Сегодня</string>
+    <string name="yesterday">Вчера</string>
+    <string name="dby">Позавчера</string>
 </resources>
