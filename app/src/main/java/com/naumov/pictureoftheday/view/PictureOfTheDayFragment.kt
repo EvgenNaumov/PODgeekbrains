@@ -14,6 +14,7 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.naumov.pictureoftheday.R
 import com.naumov.pictureoftheday.databinding.FragmentPictureOfTheDayBinding
+import com.naumov.pictureoftheday.repository.PODServerResponseData
 import com.naumov.pictureoftheday.ui.MainActivity
 import com.naumov.pictureoftheday.utils.DEBUG
 import com.naumov.pictureoftheday.utils.TAG
@@ -49,7 +50,7 @@ class PictureOfTheDayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       // setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
+        // setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
         setBottomSheetBehavior()
         binding.inputLayout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
@@ -69,18 +70,18 @@ class PictureOfTheDayFragment : Fragment() {
     private fun initChip() {
 
         binding.chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
-            for (ch:Int in checkedIds){
-               when (ch) {
-                   binding.chipDby.id->{
-                       viewModel.sendRequestTDBY()
-                   }
-                   binding.chipTd.id->{
-                       viewModel.sendRequestToday()
-                   }
-                   binding.chipEst.id->{
-                       viewModel.sendRequestYT()
-                   }
-               }
+            for (ch: Int in checkedIds) {
+                when (ch) {
+                    binding.chipDby.id -> {
+                        viewModel.sendRequestTDBY()
+                    }
+                    binding.chipTd.id -> {
+                        viewModel.sendRequestToday()
+                    }
+                    binding.chipEst.id -> {
+                        viewModel.sendRequestYT()
+                    }
+                }
             }
         }
     }
@@ -126,15 +127,11 @@ class PictureOfTheDayFragment : Fragment() {
                 if (url.isNullOrEmpty()) {
                     requireView().toast("Link is empty", requireContext())
                 } else {
-                    binding.imageView.load(url) {
-                        lifecycle(this@PictureOfTheDayFragment)
-                        error(R.drawable.ic_load_error_vector)
-                        placeholder(R.drawable.ic_no_photo_vector)
-                        crossfade(true)
-                    }
-
-                    binding.includeBottomSheet.bottomSheetDescriptionHeader.text = data.serverResponseData.title
-                    binding.includeBottomSheet.bottomSheetDescription.text = data.serverResponseData.explanation
+                      setData(serverResponseData)
+                    binding.includeBottomSheet.bottomSheetDescriptionHeader.text =
+                        data.serverResponseData.title
+                    binding.includeBottomSheet.bottomSheetDescription.text =
+                        data.serverResponseData.explanation
                 }
             }
             is PictureOfTheDayData.Loading -> {
@@ -146,8 +143,37 @@ class PictureOfTheDayFragment : Fragment() {
         }
     }
 
+    private fun setData(data: PODServerResponseData) {
+        val url = data.hdurl
+        if (url.isNullOrEmpty()) {
+            val videoUrl = data.url
+            videoUrl?.let { showAVideoUrl(it) }
+        } else {
+            binding.imageView.load(url) {
+                lifecycle(this@PictureOfTheDayFragment)
+                error(R.drawable.ic_load_error_vector)
+                placeholder(R.drawable.ic_no_photo_vector)
+                crossfade(true)
+            }
+
+        }
+    }
+    private fun showAVideoUrl(videoUrl: String) = with(binding) {
+        binding.imageView.visibility = android.view.View.GONE
+        videoOfTheDay.visibility = android.view.View.VISIBLE
+        videoOfTheDay.text = getString(R.string.message_hdurl, videoUrl.toString())
+//            "Сегодня у нас без картинки дня, но есть  видео дня! " +
+//                "${videoUrl.toString()} \n кликни >ЗДЕСЬ< чтобы открыть в новом окне"
+        videoOfTheDay.setOnClickListener {
+            val i = Intent(android.content.Intent.ACTION_VIEW).apply {
+                data = android.net.Uri.parse(videoUrl)
+            }
+            startActivity(i)
+        }
+    }
     private fun setBottomSheetBehavior() {
-        bottomSheetBehavior = BottomSheetBehavior.from(binding.includeBottomSheet.bottomSheetContainer)
+        bottomSheetBehavior =
+            BottomSheetBehavior.from(binding.includeBottomSheet.bottomSheetContainer)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 

@@ -10,8 +10,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 
 class PODRetrofitImpl {
-//    private val baseUrl = "https://api.nasa.gov/"
-
     fun getRetrofitImpl(): PictureOfTheDayAPI {
         val podRetrofit = Retrofit.Builder()
             .baseUrl(baseUrl)

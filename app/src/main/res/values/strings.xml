@@ -9,4 +9,6 @@
     <string name="today">Сегодня</string>
     <string name="yesterday">Вчера</string>
     <string name="dby">Позавчера</string>
+    <string name="message_hdurl">"Сегодня у нас без картинки дня, но есть  видео дня!
+                %s кликни ЗДЕСЬ чтобы открыть в новом окне"</string>
 </resources>
