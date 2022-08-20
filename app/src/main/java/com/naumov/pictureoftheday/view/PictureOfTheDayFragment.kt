@@ -3,7 +3,6 @@ package com.naumov.pictureoftheday.view
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -16,9 +15,6 @@ import com.naumov.pictureoftheday.R
 import com.naumov.pictureoftheday.databinding.FragmentPictureOfTheDayBinding
 import com.naumov.pictureoftheday.repository.PODServerResponseData
 import com.naumov.pictureoftheday.ui.MainActivity
-import com.naumov.pictureoftheday.utils.DEBUG
-import com.naumov.pictureoftheday.utils.TAG
-import com.naumov.pictureoftheday.utils.TODAY
 import com.naumov.pictureoftheday.utils.toast
 import com.naumov.pictureoftheday.viewmodel.PictureOfTheDayData
 import com.naumov.pictureoftheday.viewmodel.PictureOfTheDayViewModel
@@ -159,14 +155,12 @@ class PictureOfTheDayFragment : Fragment() {
         }
     }
     private fun showAVideoUrl(videoUrl: String) = with(binding) {
-        binding.imageView.visibility = android.view.View.GONE
-        videoOfTheDay.visibility = android.view.View.VISIBLE
-        videoOfTheDay.text = getString(R.string.message_hdurl, videoUrl.toString())
-//            "Сегодня у нас без картинки дня, но есть  видео дня! " +
-//                "${videoUrl.toString()} \n кликни >ЗДЕСЬ< чтобы открыть в новом окне"
+        binding.imageView.visibility = View.GONE
+        videoOfTheDay.visibility = View.VISIBLE
+        videoOfTheDay.text =  getString(R.string.message_hdurl,videoUrl,">","<")
         videoOfTheDay.setOnClickListener {
-            val i = Intent(android.content.Intent.ACTION_VIEW).apply {
-                data = android.net.Uri.parse(videoUrl)
+            val i = Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse(videoUrl)
             }
             startActivity(i)
         }

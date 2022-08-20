@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PictureOfTheDay</string>
+    <string name="photo_of_the_day_stub">Photo of the day</string>
+    <string name="wiki_helper_text">Search in Wiki</string>
+    <string name="favourite">Main</string>
+    <string name="settings">Settings</string>
+    <string name="search">Search</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="dby">DBY</string>
+    <string name="message_hdurl">Today there is no picture of the day, but there is a video ! \\n
+                %1$s click %2$sHERE%3$s to open in a new window</string>
+    <string name="search_wiki">Find in Wiki</string>
+</resources>

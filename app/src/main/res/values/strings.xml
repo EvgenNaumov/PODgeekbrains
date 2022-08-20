@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">PictureOfTheDay</string>
     <string name="photo_of_the_day_stub">Photo of the day</string>
-    <string name="search_wiki">Найти в Википедии</string>
     <string name="wiki_helper_text">Поищите термин в википедии</string>
     <string name="favourite">Основные</string>
     <string name="settings">Настройки</string>
@@ -9,6 +8,7 @@
     <string name="today">Сегодня</string>
     <string name="yesterday">Вчера</string>
     <string name="dby">Позавчера</string>
-    <string name="message_hdurl">"Сегодня у нас без картинки дня, но есть  видео дня!
-                %s кликни ЗДЕСЬ чтобы открыть в новом окне"</string>
+    <string name="message_hdurl">"Сегодня у нас без картинки дня, но есть  видео дня!\\n
+                %1$s кликни %2$sЗДЕСЬ%3$s чтобы открыть в новом окне"</string>
+    <string name="search_wiki">Найти в Википедии</string>
 </resources>
