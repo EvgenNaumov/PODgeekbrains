@@ -1,4 +1,4 @@
-package com.naumov.pictureoftheday.repository
+package com.naumov.pictureoftheday.Model
 
 import retrofit2.Call
 import retrofit2.http.GET

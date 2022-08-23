@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ChipStyleMars" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="chipBackgroundColor">@color/color_sheet_line</item>
+        <item name="fontFamily"></item>
+    </style>
+
+    <style name="TextAppearance.App.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/rubik</item>
+        <item name="android:fontFamily">@font/rubik</item>
+    </style>
+
+    <style name="ShapeAppearanceSmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="Luna" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimaryVariantLuna">@color/luna_700</item>
+    </style>
+</resources>

@@ -13,7 +13,7 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.naumov.pictureoftheday.R
 import com.naumov.pictureoftheday.databinding.FragmentPictureOfTheDayBinding
-import com.naumov.pictureoftheday.repository.PODServerResponseData
+import com.naumov.pictureoftheday.Model.PODServerResponseData
 import com.naumov.pictureoftheday.ui.MainActivity
 import com.naumov.pictureoftheday.utils.toast
 import com.naumov.pictureoftheday.viewmodel.PictureOfTheDayData
@@ -55,30 +55,33 @@ class PictureOfTheDayFragment : Fragment() {
             })
         }
 
+        initChip()
         if (savedInstanceState == null) {
             binding.chipGroup.check(R.id.chip_td)
         }
 
         setBottomAppBar(view)
-        initChip()
     }
 
     private fun initChip() {
 
-        binding.chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
-            for (ch: Int in checkedIds) {
-                when (ch) {
-                    binding.chipDby.id -> {
-                        viewModel.sendRequestTDBY()
-                    }
-                    binding.chipTd.id -> {
-                        viewModel.sendRequestToday()
-                    }
-                    binding.chipEst.id -> {
-                        viewModel.sendRequestYT()
-                    }
-                }
-            }
+        binding.chipTd.setOnClickListener {  viewModel.sendRequestToday() }
+        binding.chipEst.setOnClickListener {  viewModel.sendRequestYT() }
+        binding.chipDby.setOnClickListener { viewModel.sendRequestTDBY() }
+        binding.chipGroup.setOnCheckedStateChangeListener { _, checkedIds ->
+//            for (ch: Int in checkedIds) {
+//                when (ch) {
+//                    binding.chipDby.id -> {
+//                        viewModel.sendRequestTDBY()
+//                    }
+//                    binding.chipTd.id -> {
+//                        viewModel.sendRequestToday()
+//                    }
+//                    binding.chipEst.id -> {
+//                        viewModel.sendRequestYT()
+//                    }
+//                }
+//            }
         }
     }
 
@@ -100,10 +103,10 @@ class PictureOfTheDayFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.app_bar_fav -> requireView().toast("Favourite", requireContext())
-            R.id.app_bar_settings -> requireView().toast("Settings", requireContext())
-//                activity?.supportFragmentManager?.beginTransaction()?.add(R.id.container, ChipsFragment.newInstance())
-//                ?.addToBackStack(null)
-//                ?.commit()
+            R.id.app_bar_settings -> {requireView().toast("Settings", requireContext())
+                activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.container, SettingsFragment.newInstance())
+                ?.addToBackStack(null)
+                ?.commit()}
             android.R.id.home -> {
                 activity?.let {
                     BottomNavigationDrawerFragment().show(it.supportFragmentManager, "tag")

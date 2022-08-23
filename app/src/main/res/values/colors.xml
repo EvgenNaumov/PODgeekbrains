@@ -15,4 +15,30 @@
 
     <color name="color_light_gray">#f6f6fa</color>
     <color name="color_sheet_line">#663b4351</color>
+
+    <!-- Theme 2 Mars -->
+    <color name="mars_200">#EDA3AC</color>
+    <color name="mars_500">#DC627B</color>
+    <color name="mars_700">#980350</color>
+    <color name="mars_teal_200">#A103DA</color>
+    <color name="mars_teal_700">#4F1663</color>
+    <color name="mars_black">#FF000000</color>
+    <color name="mars_white">#FFFFFFFF</color>
+
+    <color name="mars_colorPrimary">#DC627B</color>
+    <color name="mars_colorAccent">#A103DA</color>
+    <color name="colorPrimaryVariantMars">#980350</color>
+
+    <!-- Theme 2 Luna -->
+    <color name="luna_200">#FFD273</color>
+    <color name="luna_500">#FFC140</color>
+    <color name="luna_700">#FFAD00</color>
+    <color name="luna_teal_200">#01C2EB</color>
+    <color name="luna_teal_700">#FF057087</color>
+    <color name="luna_black">#FF000000</color>
+    <color name="luna_white">#FFFFFFFF</color>
+
+    <color name="luna_colorPrimary">#FFC140</color>
+    <color name="luna_colorAccent">#01C2EB</color>
+    <color name="colorPrimaryVariantLuna">#FFAD00</color>
 </resources>

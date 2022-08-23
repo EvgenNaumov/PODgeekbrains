@@ -1,4 +1,4 @@
-package com.naumov.pictureoftheday.repository
+package com.naumov.pictureoftheday.Model
 
 import com.google.gson.GsonBuilder
 import com.naumov.pictureoftheday.utils.baseUrl

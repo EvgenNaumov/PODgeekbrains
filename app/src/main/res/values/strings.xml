@@ -11,4 +11,7 @@
     <string name="message_hdurl">"Сегодня у нас без картинки дня, но есть  видео дня!\\n
                 %1$s кликни %2$sЗДЕСЬ%3$s чтобы открыть в новом окне"</string>
     <string name="search_wiki">Найти в Википедии</string>
+    <string name="theme_one">Основная</string>
+    <string name="theme_two">Тема 2</string>
+    <string name="theme_3">Тема 3</string>
 </resources>

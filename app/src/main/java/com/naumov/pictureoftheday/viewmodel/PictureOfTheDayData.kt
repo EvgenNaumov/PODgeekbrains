@@ -1,6 +1,6 @@
 package com.naumov.pictureoftheday.viewmodel
 
-import com.naumov.pictureoftheday.repository.PODServerResponseData
+import com.naumov.pictureoftheday.Model.PODServerResponseData
 
 sealed class PictureOfTheDayData {
     data class Success(val serverResponseData: PODServerResponseData) : PictureOfTheDayData()

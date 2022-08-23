@@ -3,14 +3,12 @@ package com.naumov.pictureoftheday.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.viewbinding.BuildConfig
 import com.naumov.pictureoftheday.BuildConfig.NASA_API_KEY
-import com.naumov.pictureoftheday.repository.PODRetrofitImpl
-import com.naumov.pictureoftheday.repository.PODServerResponseData
+import com.naumov.pictureoftheday.Model.PODRetrofitImpl
+import com.naumov.pictureoftheday.Model.PODServerResponseData
 import com.naumov.pictureoftheday.utils.DBY
 import com.naumov.pictureoftheday.utils.TODAY
 import com.naumov.pictureoftheday.utils.YESTERDAY
-import com.naumov.pictureoftheday.view.PictureOfTheDayFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

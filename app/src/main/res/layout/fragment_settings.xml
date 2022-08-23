@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Настройки экрана"
+        android:layout_marginTop="8dp"
+        android:textAlignment="center"
+        />
+
+    <com.google.android.material.chip.ChipGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/chip_group_setting"
+        android:layout_marginTop="8dp"
+        android:background="@color/color_gray"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:textAlignment="center"
+        app:chipSpacingHorizontal="42dp"
+        app:selectionRequired="true"
+        app:singleLine="true"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_theme1"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/theme_one" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_theme2"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/theme_two" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_theme3"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/theme_3" />
+    </com.google.android.material.chip.ChipGroup>
+
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.naumov.pictureoftheday.repository
+package com.naumov.pictureoftheday.Model
 
 import com.google.gson.annotations.SerializedName
 
