@@ -14,29 +14,74 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.Mars" parent="Theme.PictureOfTheDay">
-        <item name="colorPrimary">@color/mars_500</item>
-        <item name="colorPrimaryVariant">@color/mars_700</item>
-        <item name="colorOnPrimary">@color/white</item>
+    <style name="Theme.MainTheme" parent="Theme.PictureOfTheDay">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">?themeColorPrimary</item>
+        <item name="colorPrimaryVariant">?themecolorPrimaryVariant</item>
+        <item name="colorOnPrimary">?themecolorOnPrimary</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/mars_teal_200</item>
-        <item name="colorSecondaryVariant">@color/mars_teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">?themecolorSecondary</item>
+        <item name="colorSecondaryVariant">?themecolorSecondaryVariant</item>
+        <item name="colorOnSecondary">?themecolorOnSecondary</item>
+
+        <item name="themeColorPrimary">@color/purple_500</item>
+        <item name="themecolorPrimaryVariant">@color/purple_700</item>
+        <item name="themecolorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="themecolorSecondary">@color/teal_200</item>
+        <item name="themecolorSecondaryVariant">@color/teal_700</item>
+        <item name="themecolorOnSecondary">@color/black</item>
+
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariantMars</item>
-        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearanceSmallComponent</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.Mars" parent="Theme.PictureOfTheDay">
+        <item name="colorPrimary">?themeColorPrimary</item>
+        <item name="colorPrimaryVariant">?themecolorPrimaryVariant</item>
+        <item name="colorOnPrimary">?themecolorOnPrimary</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">?themecolorSecondary</item>
+        <item name="colorSecondaryVariant">?themecolorSecondaryVariant</item>
+        <item name="colorOnSecondary">?themecolorOnSecondary</item>
+
+        <!-- Status bar color. -->
+        <item name="themeColorPrimary">@color/mars_500</item>
+        <item name="themecolorPrimaryVariant">@color/mars_700</item>
+        <item name="themecolorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="themecolorSecondary">@color/mars_teal_200</item>
+        <item name="themecolorSecondaryVariant">@color/mars_teal_700</item>
+        <item name="themecolorOnSecondary">@color/black</item>
+
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearanceSmallComponent.Chip</item>
+        <item name="chipBackgroundColor">@attr/colorOnBackgroundChipLuna</item>
+
+        <item name="fontFamily">@font/aclonica</item>
     </style>
 
     <style name="Theme.Luna" parent="Theme.PictureOfTheDay">
-        <item name="colorPrimary">@color/luna_500</item>
-        <item name="colorPrimaryVariant">@color/luna_700</item>
-        <item name="colorOnPrimary">@color/white</item>
+
+        <item name="colorPrimary">?themeColorPrimary</item>
+        <item name="colorPrimaryVariant">?themecolorPrimaryVariant</item>
+        <item name="colorOnPrimary">?themecolorOnPrimary</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/luna_teal_200</item>
-        <item name="colorSecondaryVariant">@color/luna_teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">?themecolorSecondary</item>
+        <item name="colorSecondaryVariant">?themecolorSecondaryVariant</item>
+        <item name="colorOnSecondary">?themecolorOnSecondary</item>
+
+        <item name="themeColorPrimary">@color/luna_500</item>
+        <item name="themecolorPrimaryVariant">@color/luna_700</item>
+        <item name="themecolorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="themecolorSecondary">@color/luna_teal_200</item>
+        <item name="themecolorSecondaryVariant">@color/luna_teal_700</item>
+        <item name="themecolorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariantLuna</item>
+        <item name="chipBackgroundColor">?colorOnBackgroundChipMars</item>
+
+        <item name="fontFamily">@font/abril_fatface</item>
     </style>
 
 </resources>

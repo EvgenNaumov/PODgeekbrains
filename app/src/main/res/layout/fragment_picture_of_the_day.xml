@@ -17,7 +17,7 @@
             android:paddingEnd="10dp">
 
             <HorizontalScrollView
-                android:id="@+id/horizint_scroll"
+                android:id="@+id/horizont_scroll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -75,7 +75,7 @@
                 app:endIconMode="custom"
 
                 app:helperText="@string/wiki_helper_text"
-                app:layout_constraintTop_toBottomOf="@id/horizint_scroll"
+                app:layout_constraintTop_toBottomOf="@id/horizont_scroll"
 
                 app:layout_constraintBottom_toTopOf="@+id/image_view"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -107,10 +107,11 @@
                 android:textColor="@color/purple_700"
                 android:textStyle="bold"
                 android:gravity="center"
+                android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/image_view"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout"
                 android:visibility="gone"
 
                 tools:ignore="MissingConstraints" />

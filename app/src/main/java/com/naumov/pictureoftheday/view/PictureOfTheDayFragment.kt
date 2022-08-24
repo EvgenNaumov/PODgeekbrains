@@ -11,9 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.naumov.pictureoftheday.Model.PODServerResponseData
 import com.naumov.pictureoftheday.R
 import com.naumov.pictureoftheday.databinding.FragmentPictureOfTheDayBinding
-import com.naumov.pictureoftheday.Model.PODServerResponseData
 import com.naumov.pictureoftheday.ui.MainActivity
 import com.naumov.pictureoftheday.utils.toast
 import com.naumov.pictureoftheday.viewmodel.PictureOfTheDayData
@@ -65,9 +65,26 @@ class PictureOfTheDayFragment : Fragment() {
 
     private fun initChip() {
 
-        binding.chipTd.setOnClickListener {  viewModel.sendRequestToday() }
-        binding.chipEst.setOnClickListener {  viewModel.sendRequestYT() }
-        binding.chipDby.setOnClickListener { viewModel.sendRequestTDBY() }
+        binding.chipTd.setOnClickListener {
+            binding.imageView.setImageDrawable(requireContext().getDrawable(R.drawable.ic_no_photo_vector))
+            binding.imageView.visibility = View.VISIBLE
+            binding.videoOfTheDay.visibility = View.GONE
+            viewModel.sendRequestToday()
+        }
+        binding.chipEst.setOnClickListener {
+            binding.imageView.setImageDrawable(requireContext().getDrawable(R.drawable.ic_no_photo_vector))
+            binding.imageView.visibility = View.VISIBLE
+            binding.videoOfTheDay.visibility = View.GONE
+
+            viewModel.sendRequestYT()
+        }
+        binding.chipDby.setOnClickListener {
+            binding.imageView.setImageDrawable(requireContext().getDrawable(R.drawable.ic_no_photo_vector))
+            binding.imageView.visibility = View.VISIBLE
+            binding.videoOfTheDay.visibility = View.GONE
+
+            viewModel.sendRequestTDBY()
+        }
         binding.chipGroup.setOnCheckedStateChangeListener { _, checkedIds ->
 //            for (ch: Int in checkedIds) {
 //                when (ch) {
@@ -103,10 +120,13 @@ class PictureOfTheDayFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.app_bar_fav -> requireView().toast("Favourite", requireContext())
-            R.id.app_bar_settings -> {requireView().toast("Settings", requireContext())
-                activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.container, SettingsFragment.newInstance())
-                ?.addToBackStack(null)
-                ?.commit()}
+            R.id.app_bar_settings -> {
+                requireView().toast("Settings", requireContext())
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(R.id.container, SettingsFragment.newInstance())
+                    ?.addToBackStack(null)
+                    ?.commit()
+            }
             android.R.id.home -> {
                 activity?.let {
                     BottomNavigationDrawerFragment().show(it.supportFragmentManager, "tag")
@@ -126,7 +146,7 @@ class PictureOfTheDayFragment : Fragment() {
                 if (url.isNullOrEmpty()) {
                     requireView().toast("Link is empty", requireContext())
                 } else {
-                      setData(serverResponseData)
+                    setData(serverResponseData)
                     binding.includeBottomSheet.bottomSheetDescriptionHeader.text =
                         data.serverResponseData.title
                     binding.includeBottomSheet.bottomSheetDescription.text =
@@ -157,10 +177,11 @@ class PictureOfTheDayFragment : Fragment() {
 
         }
     }
+
     private fun showAVideoUrl(videoUrl: String) = with(binding) {
         binding.imageView.visibility = View.GONE
         videoOfTheDay.visibility = View.VISIBLE
-        videoOfTheDay.text =  getString(R.string.message_hdurl,videoUrl,">","<")
+        videoOfTheDay.text = getString(R.string.message_hdurl, videoUrl, ">", "<")
         videoOfTheDay.setOnClickListener {
             val i = Intent(Intent.ACTION_VIEW).apply {
                 data = Uri.parse(videoUrl)
@@ -168,6 +189,7 @@ class PictureOfTheDayFragment : Fragment() {
             startActivity(i)
         }
     }
+
     private fun setBottomSheetBehavior() {
         bottomSheetBehavior =
             BottomSheetBehavior.from(binding.includeBottomSheet.bottomSheetContainer)

@@ -39,10 +39,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun getRealStyle(currentTheme: Int): Int {
         return when (currentTheme) {
-            THEME1 -> R.style.Theme_PictureOfTheDay
+            THEME1 -> R.style.Theme_MainTheme
             THEME2 -> R.style.Theme_Luna
             THEME3 -> R.style.Theme_Mars
-            else -> R.style.Theme_PictureOfTheDay
+            else -> R.style.Theme_MainTheme
         }
     }
 

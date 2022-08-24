@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="colorPrimaryVariantMars" format="reference" />
-    <attr name="colorPrimaryVariantLuna" format="reference"/>
+    <attr name="themeColorPrimary" format="reference" />
+    <attr name="themecolorPrimaryVariant" format="reference" />
+    <attr name="themecolorOnPrimary" format="reference" />
+    <attr name="themecolorSecondary" format="reference" />
+    <attr name="themecolorSecondaryVariant" format="reference" />
+    <attr name="themecolorOnSecondary" format="reference" />
+
+    <attr name="colorOnBackgroundChipMars" format="reference" />
+    <attr name="colorOnBackgroundChipLuna" format="reference"/>
     <attr name="shapeAppearanceChip" format="reference"/>
 </resources>

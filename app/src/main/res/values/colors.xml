@@ -20,6 +20,7 @@
     <color name="mars_200">#EDA3AC</color>
     <color name="mars_500">#DC627B</color>
     <color name="mars_700">#980350</color>
+    <color name="mars_100">#E188F1</color>
     <color name="mars_teal_200">#A103DA</color>
     <color name="mars_teal_700">#4F1663</color>
     <color name="mars_black">#FF000000</color>
@@ -41,4 +42,6 @@
     <color name="luna_colorPrimary">#FFC140</color>
     <color name="luna_colorAccent">#01C2EB</color>
     <color name="colorPrimaryVariantLuna">#FFAD00</color>
+
+    <color name="colorOnBackgroundChipLuna">#3DB141</color>
 </resources>

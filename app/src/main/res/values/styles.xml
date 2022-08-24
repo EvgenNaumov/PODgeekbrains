@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="ChipStyleMars" parent="Widget.MaterialComponents.Chip.Choice">
-        <item name="android:textColor">@color/colorAccent</item>
-        <item name="chipBackgroundColor">@color/color_sheet_line</item>
-        <item name="fontFamily"></item>
+
+    <style name="TextAppearance.App.Body2_Luna" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/abril_fatface</item>
+        <item name="android:fontFamily">@font/abril_fatface</item>
     </style>
 
-    <style name="TextAppearance.App.Body2" parent="TextAppearance.MaterialComponents.Body2">
-        <item name="fontFamily">@font/rubik</item>
-        <item name="android:fontFamily">@font/rubik</item>
+    <style name="TextAppearance.App.Body2_Mars" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/aclonica</item>
+        <item name="android:fontFamily">@font/aclonica</item>
     </style>
 
-    <style name="ShapeAppearanceSmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+    <style name="ShapeAppearanceSmallComponent.Chip" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerFamily">cut</item>
         <item name="cornerSize">12dp</item>
     </style>
 
-    <style name="Luna" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimaryVariantLuna">@color/luna_700</item>
+    <style name="colorOnBackgroundChipLuna" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/colorOnBackgroundChipLuna</item>
+    </style>
+    <style name="colorOnBackgroundChipMars" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/mars_100</item>
     </style>
 </resources>
